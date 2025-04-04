@@ -1,4 +1,5 @@
-
+import {getDatabase} from "firebase/database" 
+import {app} from "./firebase/firebase"
 
 function App() {
   return (
