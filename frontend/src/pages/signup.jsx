@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { SignInUser } from "../components/LogInUser";
 import { SignupUser } from "../components/SignupUser";
+import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
 
+    const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
@@ -11,6 +13,7 @@ const SignupPage = () => {
     const handleSignIn = async () => {
         try{
             await SignInUser(email, password)
+            navigate('/home')
         } catch(error) {
             setError(error.message)
         }
@@ -19,6 +22,7 @@ const SignupPage = () => {
     const handleSignup = async () => {
         try{
             await SignupUser(email, password)
+            navigate('/home')
         } catch(error) {
             setError(error.message)
         }

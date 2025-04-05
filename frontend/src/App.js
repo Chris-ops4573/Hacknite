@@ -1,18 +1,16 @@
-import {getDatabase, ref, set} from "firebase/database" 
-import {app} from "./firebase/firebase"
-import {getAuth, createUserWithEmailAndPassword} from "firebase/auth"
 import SignupPage from "./pages/signup"
-
-const auth = getAuth(app)
-
-const db = getDatabase(app);
+import Home from "./pages/home";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 
 function App() {
 
   return (
-    <div>
-      <SignupPage />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<SignupPage />}/>
+        <Route path="/home" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 
