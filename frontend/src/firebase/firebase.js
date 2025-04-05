@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth"
 
 const firebaseConfig = {
     apiKey: "AIzaSyAiCyW7iAQqeekhKo0Yb963RfOjYb8V1r0",
@@ -12,5 +13,6 @@ const firebaseConfig = {
     databaseURL: "https://hacknite-anonymous-forum-default-rtdb.firebaseio.com"
   };
   
-  const app = initializeApp(firebaseConfig);
+  export const app = initializeApp(firebaseConfig);
+  export const auth = getAuth(app)
   const analytics = getAnalytics(app);
