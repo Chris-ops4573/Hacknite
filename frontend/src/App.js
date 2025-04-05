@@ -4,6 +4,7 @@ import {Routes, Route} from "react-router-dom"
 import Navbar from "./components/Navbar";
 import { useLocation } from "react-router-dom";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import Post from "./pages/postForm";
 
 function App() {
 
@@ -22,7 +23,14 @@ function App() {
                       <Home />
                      </ProtectedRoutes>
                     } 
-                  />
+          />
+          <Route 
+            path="/post" 
+            element={<ProtectedRoutes>
+                      <Post />
+                     </ProtectedRoutes>
+                    } 
+          />
         </Routes>
     </div>
 );

@@ -5,7 +5,10 @@ const Navbar = () => {
         <header>
             <div className="container">
             <Link to="/home">
-                <h1>Home</h1>
+                <h4>Home</h4>
+            </Link>
+            <Link to="/post">
+                <h4>Post</h4>
             </Link>
             </div>
         </header>
