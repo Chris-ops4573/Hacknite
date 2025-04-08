@@ -4,7 +4,7 @@ import {Routes, Route} from "react-router-dom"
 import Navbar from "./components/Navbar";
 import { useLocation } from "react-router-dom";
 import ProtectedRoutes from "./components/ProtectedRoutes";
-import Post from "./pages/postForm";
+import PostForm from "./pages/postForm";
 
 function App() {
 
@@ -27,7 +27,7 @@ function App() {
           <Route 
             path="/post" 
             element={<ProtectedRoutes>
-                      <Post />
+                      <PostForm />
                      </ProtectedRoutes>
                     } 
           />

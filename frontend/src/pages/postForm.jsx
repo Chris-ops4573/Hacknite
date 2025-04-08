@@ -1,10 +1,17 @@
-import React from "react"
+import React, { useState } from "react"
+import { WriteAndUpdatePost } from "../components/WriteAndUpdatePost"
 
+const PostForm = () => {
 
-const Post = () => {
+    const [content, setContent] = useState("")
+
     return(
-        <h1>Make a new post</h1>
+        <div className="post-form">
+            <label>Content</label>
+            <input onChange={(e) => setContent(e.target.value)} value={content} required placeholder="Make an anonymous post" className="content-input" />
+            <button onClick={() => WriteAndUpdatePost(content)}>Post</button>
+        </div>
     )
 }
 
-export default Post
+export default PostForm
