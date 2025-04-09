@@ -9,12 +9,12 @@ import PostForm from "./pages/postForm";
 function App() {
 
   const location = useLocation()
-  const hideNavbar = location.pathname === '/' 
+  const hideNavbar = ["/home", "/post"].includes(location.pathname)
 
 
   return (
     <div>
-      {!hideNavbar && <Navbar />}
+      {hideNavbar && <Navbar />}
         <Routes>
           <Route path="/" element={<SignupPage />}/>
           <Route 
