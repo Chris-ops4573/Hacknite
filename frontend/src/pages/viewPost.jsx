@@ -1,11 +1,13 @@
 import React, { useEffect } from "react"
-import {getDatabase, onValue, push, ref, set} from "firebase/database"
+import {getDatabase, onValue, ref} from "firebase/database"
 import { useState } from "react"
 import { formatDistanceToNow } from "date-fns/formatDistanceToNow"
 import { WriteAndUpdateComment } from "../components/WriteAndUpdateComment"
+import { useParams } from "react-router-dom"
 
-const LoadPost = ({postId}) => {
+const LoadPost = () => {
 
+    const {postId} = useParams();
     const [content, setContent] = useState("")
     const [likes, setLikes] = useState(0)
     const [comments, setComments] = useState([])

@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import { useLocation } from "react-router-dom";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import PostForm from "./pages/postForm";
+import LoadPost from "./pages/viewPost";
 
 function App() {
 
@@ -23,6 +24,12 @@ function App() {
                       <Home />
                      </ProtectedRoutes>
                     } 
+          />
+          <Route
+            path="/home/:postId"
+            element={<ProtectedRoutes>
+                      <LoadPost />
+                     </ProtectedRoutes>}
           />
           <Route 
             path="/post" 

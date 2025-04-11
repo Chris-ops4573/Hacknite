@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { onValue, ref, getDatabase } from "firebase/database";
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
-import LoadPost from "./viewPost";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
 
+    const navigate = useNavigate()
     const [showComments, setShowComments] = useState("") 
     const [posts, setPosts] = useState([])
     const db = getDatabase()
@@ -34,7 +35,7 @@ const Home = () => {
                     <p>Likes: {post.likes}</p>
                     {post.createdAt ? <p>{formatDistanceToNow(new Date(post.createdAt))}</p> : <p>Time not available</p>}
                     <button onClick={() => setShowComments(post.key)}>See comments</button>
-                    {showComments === post.key ? <LoadPost postId={post.key} /> : null}
+                    {showComments === post.key ? navigate(`/home/${post.key}`) : null}
                 </div>
             ))}
         </div>
