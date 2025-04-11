@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { onValue, ref, getDatabase } from "firebase/database";
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
+import LoadPost from "./viewPost";
 
 const Home = () => {
-     
+
+    const [showComments, setShowComments] = useState("") 
     const [posts, setPosts] = useState([])
     const db = getDatabase()
     const postRef = ref(db, 'post')
@@ -16,7 +18,7 @@ const Home = () => {
                     key,
                     ...value
                 }))
-                formattedPosts.sort((a, b) => b.timestamp - a.timestamp)
+                formattedPosts.sort((a, b) => b.createdAt - a.createdAt)
                 setPosts(formattedPosts)
             }
         })
@@ -27,9 +29,12 @@ const Home = () => {
         <div>
             <h1>Home page</h1>
             {posts.map((post) => (
-                <div key={post.id} className="post">
+                <div key={post.key} className="post">
                     <p>{post.content}</p>
+                    <p>Likes: {post.likes}</p>
                     {post.createdAt ? <p>{formatDistanceToNow(new Date(post.createdAt))}</p> : <p>Time not available</p>}
+                    <button onClick={() => setShowComments(post.key)}>See comments</button>
+                    {showComments === post.key ? <LoadPost postId={post.key} /> : null}
                 </div>
             ))}
         </div>
