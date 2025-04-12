@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 const SignupPage = () => {
 
     const navigate = useNavigate()
-    const [email, setEmail] = useState("christine.r@iiitb.ac.in")
-    const [password, setPassword] = useState("christine_04")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     const [error, setError] = useState("")
 
     const handleSignIn = async () => {

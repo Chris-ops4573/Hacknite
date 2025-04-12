@@ -5,6 +5,7 @@ const PostForm = () => {
 
     const [content, setContent] = useState("")
     const [likes, setLikes] = useState(0);
+    const [error, setError] = useState("")
 
     return(
         <div className="post-form">
@@ -12,9 +13,15 @@ const PostForm = () => {
             <label>Content: </label>
             <input onChange={(e) => setContent(e.target.value)} value={content} required placeholder="Make an anonymous post" className="content-input" />
             <button onClick={() => {
-                WriteAndUpdatePost(content, likes)
-                setContent("")
+                if(content){
+                    WriteAndUpdatePost(content, likes)
+                    setContent("")
+                    setError("")
+                } else{
+                    setError("Cannot leave an empty post")
+                }
             }}>Post</button>
+            <div className="post-error">{error}</div>
             <p>Note: All posts are completely anonymous and cannot be traced back to any individual. However, please use this platform responsibly. Any content that violates community guidelines or our Terms of Service will be removed.</p>
         </div>
     )

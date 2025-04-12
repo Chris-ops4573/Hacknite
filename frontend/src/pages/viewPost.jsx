@@ -10,6 +10,7 @@ const LoadPost = () => {
     const {postId} = useParams();
     const [content, setContent] = useState("")
     const [likes, setLikes] = useState(0)
+    const [error, setError] = useState("")
     const [comments, setComments] = useState([])
     const db = getDatabase()
     const commentsRef = ref(db, 'comment/' + postId)
@@ -35,10 +36,16 @@ const LoadPost = () => {
                 <label>Comment:</label> 
                 <input onChange={(e) => setContent(e.target.value)} value={content} required placeholder="Make an anonymous comment" className="comment-input" />
                 <button onClick={() => {
-                    WriteAndUpdateComment(postId, content, likes)
-                    setContent("")
+                    if(content){
+                        WriteAndUpdateComment(postId, content, likes)
+                        setContent("")
+                        setError("")
+                    } else{
+                        setError("Cannot leave an empty comment")
+                    }
                 }}>Post</button>
             </div>
+            <div className="comment-error">{error}</div>
             <div className="view-comments">
                 <h1>Comments:</h1>
                 {comments.map((comment) => (
