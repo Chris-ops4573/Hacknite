@@ -61,7 +61,6 @@ const LoadPost = () => {
             </div>
         </div>
     )
-
 }
 
 export default LoadPost

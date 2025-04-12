@@ -13,25 +13,27 @@ const PostForm = () => {
             <label>Content: </label>
             <input onChange={(e) => setContent(e.target.value)} value={content} required placeholder="Make an anonymous post" className="content-input" />
             <h5>Add tags</h5>
-            <button onClick={() => setTags([...tags, "General  "])}>General</button>
-            <button onClick={() => setTags([...tags, "Rant  "])}>Rant</button>
-            <button onClick={() => setTags([...tags, "WiFi  "])}>WiFi</button>
-            <button onClick={() => setTags([...tags, "Services  "])}>Services</button>
-            <button onClick={() => setTags([...tags, "Clubs  "])}>Clubs</button>
-            <button onClick={() => setTags([...tags, "Social  "])}>Social</button>
-            <button onClick={() => setTags([...tags, "Confession  "])}>Confession</button>
-            <button onClick={() => setTags([...tags, "Food  "])}>Food</button>
-            <button onClick={() => setTags([...tags, "Academics  "])}>Academics</button>
-            <button onClick={() => setTags([...tags, "Networking  "])}>Networking</button>
-            <button onClick={() => setTags([...tags, "Cleaning  "])}>Cleaning</button>
-            <button onClick={() => setTags([...tags, "Hostel  "])}>Hostel</button>
-            <button onClick={() => setTags([...tags, "Going-out  "])}>Going out</button>
-            <button onClick={() => setTags([...tags, "Rules  "])}>Rules</button>
+            <button onClick={() => setTags([...tags, "General "])}>General</button>
+            <button onClick={() => setTags([...tags, "Rant "])}>Rant</button>
+            <button onClick={() => setTags([...tags, "WiFi "])}>WiFi</button>
+            <button onClick={() => setTags([...tags, "Services "])}>Services</button>
+            <button onClick={() => setTags([...tags, "Clubs "])}>Clubs</button>
+            <button onClick={() => setTags([...tags, "Social "])}>Social</button>
+            <button onClick={() => setTags([...tags, "Confession "])}>Confession</button>
+            <button onClick={() => setTags([...tags, "Food "])}>Food</button>
+            <button onClick={() => setTags([...tags, "Academics "])}>Academics</button>
+            <button onClick={() => setTags([...tags, "Networking "])}>Networking</button>
+            <button onClick={() => setTags([...tags, "Cleaning "])}>Cleaning</button>
+            <button onClick={() => setTags([...tags, "Hostel "])}>Hostel</button>
+            <button onClick={() => setTags([...tags, "Going-out "])}>Going out</button>
+            <button onClick={() => setTags([...tags, "Rules "])}>Rules</button>
+            <button onClick={() => setTags([...tags, "Regarding-this-forum "])}>Regarding this forum</button>
             <button onClick={() => {
                 if(content){
                     WriteAndUpdatePost(content, tags)
                     setContent("")
                     setError("")
+                    setTags([])
                 } else{
                     setError("Cannot leave an empty post")
                 }
