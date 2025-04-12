@@ -4,6 +4,8 @@ import { useState } from "react"
 import { formatDistanceToNow } from "date-fns/formatDistanceToNow"
 import { WriteAndUpdateComment } from "../components/WriteAndUpdateComment"
 import { useParams } from "react-router-dom"
+import { IncreaseLikes } from "../components/IncreaseLikes"
+import { DecreaseLikes } from "../components/DecreaseLikes"
 
 const LoadPost = () => {
 
@@ -52,6 +54,8 @@ const LoadPost = () => {
                     <div key={comment.id} className="comment">
                         <p>{comment.content}</p>
                         <p>Likes: {comment.likes}</p>
+                        <button onClick={() => IncreaseLikes(`comment/${postId}/${comment.key}/likes`, comment.likes)}>Like</button>
+                        <button onClick={() => DecreaseLikes(`comment/${postId}/${comment.key}/likes`, comment.likes)}>Dislike</button>
                         {comment.createdAt ? <p>{formatDistanceToNow(new Date(comment.createdAt))}</p> : <p>Time not available</p>}
                     </div>
                 ))}
