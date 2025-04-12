@@ -24,3 +24,7 @@ header .container {
 .post-navbar{
   margin-left: 40px;
 }
+
+.tags-list-member{
+  display: inline;
+}

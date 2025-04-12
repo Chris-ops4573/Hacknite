@@ -34,6 +34,10 @@ const Home = () => {
             {posts.map((post) => (
                 <div key={post.key} className="post">
                     <p>{post.content}</p>
+                    <p className="tags-list">Tags:</p>
+                    {post.tags.map((tag) => (
+                        <div className="tags-list-member">{tag}</div>
+                    ))}
                     <p>Likes: {post.likes}</p>
                     <button onClick={() => IncreaseLikes(`post/${post.key}/likes`, post.likes)}>Like</button>
                     <button onClick={() => DecreaseLikes(`post/${post.key}/likes`, post.likes)}>Dislike</button>

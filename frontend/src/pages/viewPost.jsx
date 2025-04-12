@@ -11,7 +11,6 @@ const LoadPost = () => {
 
     const {postId} = useParams();
     const [content, setContent] = useState("")
-    const [likes, setLikes] = useState(0)
     const [error, setError] = useState("")
     const [comments, setComments] = useState([])
     const db = getDatabase()
@@ -39,7 +38,7 @@ const LoadPost = () => {
                 <input onChange={(e) => setContent(e.target.value)} value={content} required placeholder="Make an anonymous comment" className="comment-input" />
                 <button onClick={() => {
                     if(content){
-                        WriteAndUpdateComment(postId, content, likes)
+                        WriteAndUpdateComment(postId, content)
                         setContent("")
                         setError("")
                     } else{

@@ -7,7 +7,7 @@ export const WriteAndUpdateComment = (postId, content, likes) => {
 
     set(commentsRef, {
         content: content, 
-        likes: likes,
+        likes: 0,
         postId: postId,
         commentId: commentId,
         createdAt: serverTimestamp()
