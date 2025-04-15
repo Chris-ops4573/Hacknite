@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import PostForm from "./pages/postForm";
 import LoadPost from "./pages/viewPost";
+import ReportUser from "./pages/report";
 
 function App() {
 
@@ -35,6 +36,13 @@ function App() {
             path="/post" 
             element={<ProtectedRoutes>
                       <PostForm />
+                     </ProtectedRoutes>
+                    } 
+          />
+          <Route 
+            path="/report/:reportedId" 
+            element={<ProtectedRoutes>
+                      <ReportUser />
                      </ProtectedRoutes>
                     } 
           />
