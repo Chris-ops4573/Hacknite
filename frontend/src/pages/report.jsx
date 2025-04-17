@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 const ReportUser = () => {
 
     const navigate = useNavigate()
-    const {reportedId} = useParams()
+    const {reportedId, contentType} = useParams()
     const [report, setReport] = useState("")
     const [error, setError] = useState("")
 
@@ -18,7 +18,7 @@ const ReportUser = () => {
             <input onChange={(e) => setReport(e.target.value)} value={report} required placeholder="Make an anonymous report" className="report-input" />
             <button onClick={() => {
                 if(report){
-                    Report(reportedId, report, "post")
+                    Report(reportedId, report, contentType)
                     setReport("")
                     navigate("/home")
                 } else{

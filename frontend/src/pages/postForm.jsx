@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { WriteAndUpdatePost } from "../components/WriteAndUpdatePost"
+import { WriteAndUpdatePost } from "../components/models/PostsModel"
 
 const PostForm = () => {
 

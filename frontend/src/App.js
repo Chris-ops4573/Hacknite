@@ -40,7 +40,7 @@ function App() {
                     } 
           />
           <Route 
-            path="/report/:reportedId" 
+            path="/report/:contentType/:reportedId" 
             element={<ProtectedRoutes>
                       <ReportUser />
                      </ProtectedRoutes>

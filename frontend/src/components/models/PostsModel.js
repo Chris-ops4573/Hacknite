@@ -12,5 +12,4 @@ export const WriteAndUpdatePost = (content ,tags) => {
         tags: tags,
         createdAt: serverTimestamp()
     })
-
 }
