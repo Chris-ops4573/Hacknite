@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Report } from "../components/Report"
+import { Report } from "../components/models/Report"
 import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 
