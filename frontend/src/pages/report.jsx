@@ -2,9 +2,12 @@ import { useState } from "react"
 import { Report } from "../components/models/Report"
 import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
+import { getAuth } from "firebase/auth"
 
 const ReportUser = () => {
 
+    const auth = getAuth()
+    const user = auth.currentUser
     const navigate = useNavigate()
     const {reportedId, contentType} = useParams()
     const [report, setReport] = useState("")
@@ -18,7 +21,7 @@ const ReportUser = () => {
             <input onChange={(e) => setReport(e.target.value)} value={report} required placeholder="Make an anonymous report" className="report-input" />
             <button onClick={() => {
                 if(report){
-                    Report(reportedId, report, contentType)
+                    Report(reportedId, report, contentType, user.uid)
                     setReport("")
                     navigate("/home")
                 } else{

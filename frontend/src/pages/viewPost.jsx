@@ -8,9 +8,12 @@ import { IncreaseLikes } from "../components/IncreaseLikes"
 import { DecreaseLikes } from "../components/DecreaseLikes"
 import { useNavigate } from "react-router-dom"
 import { ReplyToComment } from "../components/models/RepliesModel"
+import { getAuth } from "firebase/auth"
 
 const LoadPost = () => {
 
+    const auth = getAuth()
+    const user = auth.currentUser
     const navigate = useNavigate()
     const {postId} = useParams();
     const [replyError, setReplyError] = useState("")
@@ -82,7 +85,7 @@ const LoadPost = () => {
                 <input onChange={(e) => setContent(e.target.value)} value={content} required placeholder="Make an anonymous comment" className="comment-input" />
                 <button onClick={() => {
                     if(content){
-                        WriteAndUpdateComment(postId, content)
+                        WriteAndUpdateComment(postId, content, user.uid)
                         setContent("")
                         setError("")
                     } else{
@@ -111,7 +114,7 @@ const LoadPost = () => {
                                         <input onChange={(e) => setReply(e.target.value)} value={reply} required placeholder="Make an anonymous reply" className="reply-input" />
                                         <button onClick={() => {
                                             if(reply){
-                                                ReplyToComment(comment.key, reply)
+                                                ReplyToComment(comment.key, reply, user.uid)
                                                 setReply("")
                                                 setReplyError("")
                                             } else{

@@ -1,6 +1,6 @@
 import { set, ref, getDatabase, push, serverTimestamp } from "firebase/database"
 
-export const ReplyToComment = (commentId, content) => {
+export const ReplyToComment = (commentId, content, uid) => {
     const db = getDatabase()
     const replyRef = push(ref(db, 'reply/' + commentId))
     const replyId = replyRef.key 
@@ -10,6 +10,7 @@ export const ReplyToComment = (commentId, content) => {
         likes: 0,
         commentId: commentId, 
         replyId: replyId, 
-        createdAt: serverTimestamp()
+        createdAt: serverTimestamp(),
+        userUid: uid
     })
 }

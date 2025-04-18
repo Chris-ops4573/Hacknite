@@ -7,6 +7,7 @@ import { DecreaseLikes } from "../components/DecreaseLikes";
 
 const Home = () => {
 
+    const [additionalFilters, setAdditionalFilters] = useState("")
     const navigate = useNavigate()
     const [showComments, setShowComments] = useState("") 
     const [posts, setPosts] = useState([])
@@ -33,16 +34,29 @@ const Home = () => {
     }, [])
 
     useEffect(() => {
-        if(selectedTag){
-            setFilteredPosts(posts.filter((post) => {
-                return post.tags.includes(selectedTag)
-            }))
-        } else{
-            setFilteredPosts(posts)
+        let updatedPosts = [...posts];
+    
+        if (selectedTag) {
+            updatedPosts = updatedPosts.filter((post) =>
+                post.tags.includes(selectedTag)
+            );
         }
-        filteredPosts.sort((a, b) => b.createdAt - a.createdAt)
-    }, [selectedTag, posts])
 
+        if (additionalFilters === "most-liked") {
+            updatedPosts.sort((a, b) => b.likes - a.likes);
+        } else if (additionalFilters === "least-liked") {
+            updatedPosts.sort((a, b) => a.likes - b.likes);
+        } else if (additionalFilters === "latest") {
+            updatedPosts.sort((a, b) => b.createdAt - a.createdAt);
+        } else if (additionalFilters === "oldest") {
+            updatedPosts.sort((a, b) => a.createdAt - b.createdAt);
+        } else if (additionalFilters === "show all") {
+            updatedPosts = [...posts]; 
+        }
+    
+        setFilteredPosts(updatedPosts);
+    }, [selectedTag, posts, additionalFilters]);
+    
     return(
         <div>
             <h1>Home page</h1>
@@ -62,6 +76,12 @@ const Home = () => {
             <button onClick={() => setSelectedTag("Going-out ")}>Going out</button>
             <button onClick={() => setSelectedTag("Rules ")}>Rules</button>
             <button onClick={() => setSelectedTag("Regarding-this-forum ")}>Regarding this forum</button>
+            <button onClick={() => setSelectedTag("")}>Remove selected tags</button>
+            <p>additional filters: </p>
+            <button onClick={() => setAdditionalFilters("most-liked")}>Sort by most liked</button>
+            <button onClick={() => setAdditionalFilters("least-liked")}>Sort by least liked</button>
+            <button onClick={() => setAdditionalFilters("latest")}>Sort by latest</button>
+            <button onClick={() => setAdditionalFilters("oldest")}>Sort by oldest</button>
             {filteredPosts.map((post) => (
                 <div key={post.key} className="post">
                     <p>{post.content}</p>

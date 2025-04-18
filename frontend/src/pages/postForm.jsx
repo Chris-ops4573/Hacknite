@@ -1,8 +1,11 @@
 import React, { useState } from "react"
 import { WriteAndUpdatePost } from "../components/models/PostsModel"
+import { getAuth } from "firebase/auth"
 
 const PostForm = () => {
 
+    const auth = getAuth()
+    const user = auth.currentUser   
     const [content, setContent] = useState("")
     const [error, setError] = useState("")
     const [tags, setTags] = useState([])
@@ -20,7 +23,7 @@ const PostForm = () => {
             <input onChange={(e) => setContent(e.target.value)} value={content} required placeholder="Make an anonymous post" className="content-input" />
             <button className="post-button" onClick={() => {
                 if(content){
-                    WriteAndUpdatePost(content, tags)
+                    WriteAndUpdatePost(content, tags, user.uid)
                     setContent("")
                     setError("")
                     setTags([])

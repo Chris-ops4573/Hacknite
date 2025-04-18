@@ -2,7 +2,7 @@ import { getDatabase, ref, push, serverTimestamp } from "firebase/database"
 import { set } from "firebase/database"
 
 
-export const Report = (reportedId, content, type) => {
+export const Report = (reportedId, content, type, uid) => {
     const db = getDatabase()
     const reportRef = push(ref(db, 'report'))
     const reportId = reportRef.key
@@ -12,6 +12,7 @@ export const Report = (reportedId, content, type) => {
         reportId: reportId, 
         reportedId: reportedId,
         type: type,
-        createdAt: serverTimestamp()
+        createdAt: serverTimestamp(),
+        userUid: uid
     })
 }
