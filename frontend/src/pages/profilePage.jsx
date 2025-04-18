@@ -5,6 +5,8 @@ import { getDatabase, onValue, ref } from "firebase/database"
 import { fetchUserContent } from "../components/fetchUserData"
 import { formatDistanceToNow } from "date-fns/formatDistanceToNow"
 import { deleteContent } from "../components/DeletePost"
+import { IncreaseLikes } from "../components/IncreaseLikes"
+import { DecreaseLikes } from "../components/DecreaseLikes"
 
 const ProfilePage = () => {
 
@@ -48,7 +50,7 @@ const ProfilePage = () => {
             <h1>View your profile {username}</h1>
             <h2>Your posts: </h2>
             {posts.map((post) => (
-                <div className="user-post">
+                <div key={post.postId} className="user-post">
                     <h4>{post.content}</h4>
                     <h4>tags:</h4>
                     {post.tags.map((tag) => (
