@@ -1,4 +1,5 @@
-import SignupPage from "./pages/signup"
+import SigninPage from "./pages/login"
+import SignupPage from "./pages/signup";
 import Home from "./pages/home";
 import {Routes, Route} from "react-router-dom"
 import Navbar from "./components/Navbar";
@@ -18,7 +19,8 @@ function App() {
     <div>
       {hideNavbar && <Navbar />}
         <Routes>
-          <Route path="/" element={<SignupPage />}/>
+          <Route path="/" element={<SigninPage />}/>
+          <Route path="/signup" element={<SignupPage />}/>
           <Route 
             path="/home" 
             element={<ProtectedRoutes>

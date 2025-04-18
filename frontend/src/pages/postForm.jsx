@@ -1,9 +1,11 @@
 import React, { useState } from "react"
 import { WriteAndUpdatePost } from "../components/models/PostsModel"
 import { getAuth } from "firebase/auth"
+import { useNavigate } from "react-router-dom"
 
 const PostForm = () => {
 
+    const navigate = useNavigate()
     const auth = getAuth()
     const user = auth.currentUser   
     const [content, setContent] = useState("")
@@ -23,10 +25,11 @@ const PostForm = () => {
             <input onChange={(e) => setContent(e.target.value)} value={content} required placeholder="Make an anonymous post" className="content-input" />
             <button className="post-button" onClick={() => {
                 if(content){
-                    WriteAndUpdatePost(content, tags, user.uid)
+                    WriteAndUpdatePost(content, tags, user.uid, )
                     setContent("")
                     setError("")
                     setTags([])
+                    navigate('/home')
                 } else{
                     setError("Cannot leave an empty post")
                 }
