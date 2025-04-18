@@ -84,12 +84,12 @@ const Home = () => {
             <button onClick={() => setAdditionalFilters("oldest")}>Sort by oldest</button>
             {filteredPosts.map((post) => (
                 <div key={post.key} className="post">
-                    <p>{post.content}</p>
-                    <p className="tags-list">Tags:</p>
+                    <h4>{post.content}</h4>
+                    <h4 className="tags-list">Tags:</h4>
                     {post.tags.map((tag) => (
                         <div className="tags-list-member">{tag}</div>
                     ))}
-                    <p>Likes: {post.likes}</p>
+                    <h4>Likes: {post.likes}</h4>
                     <button onClick={() => IncreaseLikes(`post/${post.key}/likes`, post.likes)}>Like</button>
                     <button onClick={() => DecreaseLikes(`post/${post.key}/likes`, post.likes)}>Dislike</button>
                     {post.createdAt ? <p>{formatDistanceToNow(new Date(post.createdAt))}</p> : <p>Time not available</p>}

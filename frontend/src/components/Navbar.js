@@ -10,6 +10,9 @@ const Navbar = () => {
                 <Link to="/post">
                     <h4 className="post-navbar">Post</h4>
                 </Link>
+                <Link to="/profile">
+                    <h4 className="profile-navbar">Profile</h4>
+                </Link>
             </div>
         </header>
     )
