@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { getDatabase, onValue, ref } from "firebase/database"
 import { fetchUserContent } from "../components/fetchUserData"
 import { formatDistanceToNow } from "date-fns/formatDistanceToNow"
+import { deleteContent } from "../components/DeletePost"
 
 const ProfilePage = () => {
 
@@ -12,8 +13,6 @@ const ProfilePage = () => {
     const user = auth.currentUser
     const [username, setUsername] = useState("")
     const [posts, setPosts] = useState([])
-    const [comments, setComments] = useState([])
-    const [replies, setReplies] = useState([])
     const db = getDatabase()
 
     useEffect(() => {
@@ -27,7 +26,8 @@ const ProfilePage = () => {
             const data = snapshot.val()
             setUsername(data.username)
         })
-    })
+        return () => unrenderProfile()
+    }, [username])
     
     useEffect(() => {
         const postsRef = ref(db, "user/" + user.uid + "/posts")
@@ -37,6 +37,7 @@ const ProfilePage = () => {
                 return `post/${i}` 
             })
             const postArray = await fetchUserContent(dataNew)
+            postArray.sort((a, b) => b.createdAt - a.createdAt)
             setPosts(postArray)
         })
         return() => stopRenderingUserPosts()
@@ -55,6 +56,7 @@ const ProfilePage = () => {
                     ))}
                     <h4>Likes: {post.likes}</h4>
                     {post.createdAt ? <p>{formatDistanceToNow(new Date(post.createdAt))}</p> : <p>Time not available</p>}
+                    <button onClick={() => deleteContent(post.postId)}>Delete post</button>
                 </div>
             ))}
         </div>
