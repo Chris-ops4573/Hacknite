@@ -15,11 +15,10 @@ const ReportUser = () => {
 
 
     return(
-        <div className="report">
-            <h3>Thank you for bringing this to our attention please make and submit your report here</h3>
-            <label>Report: </label>
-            <input onChange={(e) => setReport(e.target.value)} value={report} required placeholder="Make an anonymous report" className="report-input" />
-            <button onClick={() => {
+        <div className="report-container">
+            <h2 className="report-heading">Thank you for bringing this to our attention please make and submit your report here</h2>
+            <textarea className="content-input" rows="5" cols="100" onChange={(e) => setReport(e.target.value)} value={report} required placeholder="Make an anonymous report" />
+            <button className="report-submit-button" onClick={() => {
                 if(report){
                     Report(reportedId, report, contentType, user.uid)
                     setReport("")

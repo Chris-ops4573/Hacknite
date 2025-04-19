@@ -71,19 +71,18 @@ const LoadPost = () => {
             <div className="showing-post">
                 {postContent ? (
                     <>
-                        <h2>{postContent.content}</h2>
-                        <h2>Likes: {postContent.likes}</h2>
-                        <button onClick={() => IncreaseLikes(`post/${postContent.postId}/likes`, postContent.likes)}>Like</button>
-                        <button onClick={() => DecreaseLikes(`post/${postContent.postId}/likes`, postContent.likes)}>Dislike</button>
-                        <button onClick={() => navigate(`/report/post/${postContent.postId}`)}>Report!</button>
+                        <h1 className="post-content">{postContent.content}</h1>
+                        <button className="like-button" onClick={() => IncreaseLikes(`post/${postContent.postId}/likes`, postContent.likes)}>Like: {postContent.likes}</button>
+                        <button className="dislike-button" onClick={() => DecreaseLikes(`post/${postContent.postId}/likes`, postContent.likes)}>Dislike: {postContent.dislikes}</button>
+                        <button className="report-button" onClick={() => navigate(`/report/post/${postContent.postId}`)}>Report!</button>
                     </>
                 ) : <p>Loading posts</p>}   
-                {postContent ? <p>{formatDistanceToNow(new Date(postContent.createdAt))}</p> : <p>Time not available</p>}
+                {postContent ? <p>{formatDistanceToNow(new Date(postContent.createdAt))} ago</p> : <p>Time not available</p>}
             </div>
             <div className="make-comment">
-                <label>Comment:</label> 
-                <input onChange={(e) => setContent(e.target.value)} value={content} required placeholder="Make an anonymous comment" className="comment-input" />
-                <button onClick={() => {
+                <h4 className="comment-label">Comment: &nbsp;</h4> 
+                <textarea rows="4" cols="75 " onChange={(e) => setContent(e.target.value)} value={content} required placeholder="Make an anonymous comment" className="content-input" />
+                <button className="comment-post-button" onClick={() => {
                     if(content){
                         WriteAndUpdateComment(postId, content, user.uid)
                         setContent("")
@@ -95,45 +94,49 @@ const LoadPost = () => {
             </div>
             <div className="comment-error">{error}</div>
             <div className="view-comments">
-                <h1>Comments:</h1>
-                {comments.map((comment) => (
-                    <div key={comment.key} className="comment">
-                        <h3>{comment.content}</h3>
-                        <h3>Likes: {comment.likes} Dislikes: {comment.dislikes}</h3>
-                        <button onClick={() => IncreaseLikes(`comment/${postId}/${comment.key}`, comment.likes)}>Like</button>
-                        <button onClick={() => DecreaseLikes(`comment/${postId}/${comment.key}`, comment.dislikes)}>Dislike</button>
-                        {comment.createdAt ? <p>{formatDistanceToNow(new Date(comment.createdAt))}</p> : <p>Time not available</p>}
-                        {showReplies === comment.key ? <button onClick={() => {
-                            setShowReplies("")
-                            setReply("")
-                        }}>Hide replies</button> : <button onClick={() => {
-                            setShowReplies(comment.key)
-                            setReply("")
-                        }}>Show Replies</button>}
-                        {showReplies === comment.key ? <>
-                                        <input onChange={(e) => setReply(e.target.value)} value={reply} required placeholder="Make an anonymous reply" className="reply-input" />
-                                        <button onClick={() => {
-                                            if(reply){
-                                                ReplyToComment(comment.key, reply, user.uid)
-                                                setReply("")
-                                                setReplyError("")
-                                            } else{
-                                                setReplyError("Cannot leave an empty reply")
-                                            }
-                                        }}>Post</button>
-                                        <div className="reply-error">{replyError}</div>
-                                       </> : null}
-                        {showReplies === comment.key ? replies.map((reply) => (
-                            <div key={reply.key} className="comment-reply">
-                                <p>{reply.content}</p>
-                                <p>Likes: {reply.likes} Dislikes: {reply.dislikes}</p>
-                                <button onClick={() => IncreaseLikes(`reply/${comment.key}/${reply.key}`, reply.likes)}>Like</button>
-                                <button onClick={() => DecreaseLikes(`reply/${comment.key}/${reply.key}`, reply.dislikes)}>Dislike</button>
+                <h2>Comments:</h2>
+                <div className="all-comment">
+                    {comments.map((comment) => (
+                        <div key={comment.key} className="comment">
+                            <h3 className="comment-content">{comment.content}</h3>
+                            <button className="like-button" onClick={() => IncreaseLikes(`comment/${postId}/${comment.key}`, comment.likes)}>Like: {comment.likes}</button>
+                            <button className="dislike-button" onClick={() => DecreaseLikes(`comment/${postId}/${comment.key}`, comment.dislikes)}>Dislike: {comment.dislikes}</button>
+                            {comment.createdAt ? <p>{formatDistanceToNow(new Date(comment.createdAt))} ago</p> : <p>Time not available</p>}
+                            <button className="report-button" onClick={() => navigate(`/report/comment/${comment.key}`)}>Report!</button>
+                            {showReplies === comment.key ? <button className="hide-replies-button" onClick={() => {
+                                setShowReplies("")
+                                setReply("")
+                            }}>Hide replies</button> : <button className="show-replies-button" onClick={() => {
+                                setShowReplies(comment.key)
+                                setReply("")
+                            }}>Show Replies</button>}
+                            {showReplies === comment.key ? <>
+                                            <textarea cols="40" rows="3" onChange={(e) => setReply(e.target.value)} value={reply} required placeholder="Make an anonymous reply" className="content-input" />
+                                            <button className="reply-comment-button" onClick={() => {
+                                                if(reply){
+                                                    ReplyToComment(comment.key, reply, user.uid)
+                                                    setReply("")
+                                                    setReplyError("")
+                                                } else{
+                                                    setReplyError("Cannot leave an empty reply")
+                                                }
+                                            }}>Post</button>
+                                            <div className="reply-error">{replyError}</div>
+                                        </> : null}
+                            <div className="all-replies">
+                                {showReplies === comment.key ? replies.map((reply) => (
+                                    <div key={reply.key} className="comment-reply">
+                                        <h4>{reply.content}</h4>
+                                        <button className="like-button" onClick={() => IncreaseLikes(`reply/${comment.key}/${reply.key}`, reply.likes)}>Like: {reply.likes}</button>
+                                        <button className="dislike-button" onClick={() => DecreaseLikes(`reply/${comment.key}/${reply.key}`, reply.dislikes)}>Dislike: {reply.dislikes }</button>
+                                        {reply.createdAt ? <p>{formatDistanceToNow(new Date(reply.createdAt))} ago</p> : <p>Time not available</p>}
+                                        <button className="report-button" onClick={() => navigate(`/report/comment/${comment.key}`)}>Report!</button>
+                                    </div>
+                                )) : null}
                             </div>
-                        )) : null}
-                        <button onClick={() => navigate(`/report/comment/${comment.key}`)}>Report!</button>
-                    </div>
-                ))}
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )

@@ -14,6 +14,7 @@ const ProfilePage = () => {
     const [username, setUsername] = useState("")
     const [posts, setPosts] = useState([])
     const db = getDatabase()
+    const [showComments, setShowComments] = useState("")
 
     useEffect(() => {
         if(!user){
@@ -49,20 +50,23 @@ const ProfilePage = () => {
 
     return(
         <div className="profile-page">
-            <h1>View your profile {username}</h1>
-            <h2>Your posts: </h2>
-            {posts.map((post) => (
-                <div key={post.postId} className="user-post">
-                    <h4>{post.content}</h4>
-                    <h4>tags:</h4>
-                    {post.tags.map((tag) => (
-                        <div className="tags-list-member">{tag}</div>
-                    ))}
-                    <h4>Likes: {post.likes} Dislikes: {post.dislikes}</h4>
-                    {post.createdAt ? <p>{formatDistanceToNow(new Date(post.createdAt))}</p> : <p>Time not available</p>}
-                    <button onClick={() => deleteContent(post.postId)}>Delete post</button>
-                </div> 
-            ))}
+            <h1 className="profile-heading">View your profile {username}</h1>
+            <div className="all-posts">
+                {posts.map((post) => (
+                    <div key={post.postId} className="post">
+                        <h3>{post.content}</h3>
+                        <div>
+                            <h4 className="tags-list">tags:</h4>
+                            <div>{post.tags.join(", ")}</div>
+                        </div>
+                        <h4>Likes: {post.likes} Dislikes: {post.dislikes}</h4>
+                        {post.createdAt ? <p>{formatDistanceToNow(new Date(post.createdAt))} ago</p> : <p>Time not available</p>}
+                        <button className="delete-button" onClick={() => deleteContent(post.postId)}>Delete post</button>
+                        <button className="show-comments-button" onClick={() => setShowComments(post.key)}>See comments</button>
+                        {showComments === post.key ? navigate(`/home/${post.postId}`) : null}
+                    </div> 
+                ))}
+            </div>
         </div>
     )
 }
