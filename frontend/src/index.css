@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(103, 102, 102) ;
 }
 
 code {
@@ -19,6 +20,110 @@ header .container {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+.wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 45vw;
+  border: 20px solid #f1f1f1;
+  background-color: black;
+}
+
+.email-label{
+  display: block;
+  color: grey;
+}
+
+.email-input{
+  padding: 3px;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+.email-field{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.password-label{
+  color: grey
+}
+
+.password-input{
+  padding: 3px;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+.password-field{
+  margin-bottom: 40px;
+}
+
+.login-button-row{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.anonymity-warning{
+  margin-bottom: 40px;
+  color: grey;
+}
+
+.username-field{
+  margin-bottom: 40px;
+}
+
+.username-label{
+  color: grey;
+}
+
+.username-input{
+  padding: 3px;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+.error-message{
+  color: grey;
+}
+
+.action-button{
+  border: 5px solid #151a59;
+  background-color: rgb(103, 102, 102);
+  border-radius: 10px;
+}
+
+.action-button:hover{
+  border: 5px solid #151a59;
+  background-color: rgb(54, 53, 53);
+  border-radius: 10px;
+}
+
+.different-action-button{
+  border: 5px solid #151a59;
+  background-color: rgb(103, 102, 102); 
+  border-radius: 10px;
+}
+
+.different-action-button:hover{
+  border: 5px solid #151a59;
+  background-color: rgb(54, 53, 53);
+  border-radius: 10px;
 }
 
 .post-navbar{

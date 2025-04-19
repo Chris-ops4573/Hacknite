@@ -21,17 +21,27 @@ const SignupPage = () => {
     }
 
     return(
-        <div className="signup-page">
-            <p>Note: Refrain from using your real name in username to maintain anonymity</p>
-            <label>Username</label>
-            <input onChange={(e) => setUsername(e.target.value)} value={username} type="text" required placeholder="Choose any username" className="username-input" />
-            <label>Email</label>
-            <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" required placeholder="Enter your email" className="email-input"/>
-            <label>Password</label>
-            <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" required placeholder="Enter your password" className="password-input"/>
-            <button onClick={() => handleSignup()} className="signup-button">Sign Up</button>
-            <button onClick={() => navigate('/')} className="signin-button">Sign In instead</button>
-            {error && <p className="error-message">{error}</p>}
+        <div className="wrapper">
+            <div className="login-page">
+                <p className="anonymity-warning">Note: Refrain from using your real name in username to maintain anonymity</p>
+                <div className="username-field">
+                    <label className="username-label">Username: &nbsp;</label>
+                    <input onChange={(e) => setUsername(e.target.value)} value={username} type="text" required placeholder="Choose any username" className="username-input" />
+                </div>
+                <div className="email-field">
+                    <label className="email-label">Email: &nbsp;</label>
+                    <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" required placeholder="Enter your email" className="email-input"/>
+                </div>
+                <div className="password-field">
+                    <label className="password-label">Password: &nbsp;</label>
+                    <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" required placeholder="Enter your password" className="password-input"/>
+                </div>
+                <div className="login-button-row">
+                    <button onClick={() => handleSignup()} className="action-button">Sign Up</button>
+                    <button onClick={() => navigate('/')} className="different-action-button">Sign In instead</button>
+                </div>
+                {error && <p className="error-message">{error}</p>}
+            </div>
         </div>
     )
 }

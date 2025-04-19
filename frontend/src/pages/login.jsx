@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { SignInUser } from "../components/LogInUser";
-import { SignupUser } from "../components/SignupUser";
 import { useNavigate } from "react-router-dom";
 
 const SigninPage = () => {
@@ -21,14 +20,22 @@ const SigninPage = () => {
 
 
     return(
-        <div clasName="login-page">
-            <label>Email</label>
-            <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" required placeholder="Enter your email" className="email-input"/>
-            <label>Password</label>
-            <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" required placeholder="Enter your password" className="password-input"/>
-            <button onClick={() => handleSignIn()} className="signin-button">Sign In</button>
-            <button onClick={() => navigate('/signup')} className="signup-button">Sign Up instead</button>
-            {error && <p className="error-message">{error}</p>}
+        <div className="wrapper">
+            <div className="login-page">
+                <div className="email-field">
+                    <label className="email-label">Email: &nbsp;</label>
+                    <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" required placeholder="Enter your email" className="email-input"/>
+                </div>
+                <div className="password-field">
+                    <label className="password-label">Password: &nbsp;</label>
+                    <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" required placeholder="Enter your password" className="password-input"/>
+                </div>
+                <div className="login-button-row">
+                    <button onClick={() => handleSignIn()} className="action-button">Sign In</button>
+                    <button onClick={() => navigate('/signup')} className="different-action-button">Sign Up instead</button>
+                </div>
+                {error && <p className="error-message">{error}</p>}
+            </div>
         </div>
     )
 }
