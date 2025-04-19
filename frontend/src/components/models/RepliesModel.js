@@ -9,6 +9,7 @@ export const ReplyToComment = async (commentId, content, uid) => {
     set(replyRef, {
         content: content, 
         likes: 0,
+        dislikes: 0,
         commentId: commentId, 
         replyId: replyId, 
         createdAt: serverTimestamp(),

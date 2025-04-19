@@ -10,9 +10,12 @@ export const WriteAndUpdatePost = async (content ,tags, uid) => {
         content: content,
         postId: postId,
         likes: 0,
+        dislikes: 0,
         tags: tags.length > 0 ? tags : ["General "],
         createdAt: serverTimestamp(),
-        userUid: uid
+        userUid: uid,
+        likedBy: [],
+        dislikedBy: []
     })
 
     const snapshot = await get(postsRef)

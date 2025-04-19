@@ -89,9 +89,9 @@ const Home = () => {
                     {post.tags.map((tag) => (
                         <div className="tags-list-member">{tag}</div>
                     ))}
-                    <h4>Likes: {post.likes}</h4>
-                    <button onClick={() => IncreaseLikes(`post/${post.key}/likes`, post.likes)}>Like</button>
-                    <button onClick={() => DecreaseLikes(`post/${post.key}/likes`, post.likes)}>Dislike</button>
+                    <h4>Likes: {post.likes} Dislikes: {post.dislikes}</h4>
+                    <button onClick={() => IncreaseLikes(`post/${post.key}`, post.likes)}>Like</button>
+                    <button onClick={() => DecreaseLikes(`post/${post.key}`, post.dislikes)}>Dislike</button>
                     {post.createdAt ? <p>{formatDistanceToNow(new Date(post.createdAt))}</p> : <p>Time not available</p>}
                     <button onClick={() => setShowComments(post.key)}>See comments</button>
                     {showComments === post.key ? navigate(`/home/${post.key}`) : null}

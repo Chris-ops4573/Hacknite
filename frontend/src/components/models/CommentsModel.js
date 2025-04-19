@@ -9,6 +9,7 @@ export const WriteAndUpdateComment = async (postId, content, uid) => {
     set(commentRef, {
         content: content, 
         likes: 0,
+        dislikes: 0,
         postId: postId,
         commentId: commentId,
         createdAt: serverTimestamp(),

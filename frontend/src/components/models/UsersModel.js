@@ -1,5 +1,4 @@
 import { getDatabase, ref, serverTimestamp, set } from "firebase/database";
-import { getAuth } from "firebase/auth";
 
 export const getOrMakeUser = (user, username) => {
     
@@ -9,8 +8,6 @@ export const getOrMakeUser = (user, username) => {
         username: username,
         userId: user.uid,
         createdAt: serverTimestamp(),
-        posts: [],
-        comments: [], 
-        replies: []
+        posts: []
     })
 }

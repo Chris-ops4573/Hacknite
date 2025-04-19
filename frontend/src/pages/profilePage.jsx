@@ -5,8 +5,6 @@ import { getDatabase, onValue, ref } from "firebase/database"
 import { fetchUserContent } from "../components/fetchUserData"
 import { formatDistanceToNow } from "date-fns/formatDistanceToNow"
 import { deleteContent } from "../components/DeletePost"
-import { IncreaseLikes } from "../components/IncreaseLikes"
-import { DecreaseLikes } from "../components/DecreaseLikes"
 
 const ProfilePage = () => {
 
@@ -35,6 +33,10 @@ const ProfilePage = () => {
         const postsRef = ref(db, "user/" + user.uid + "/posts")
         const stopRenderingUserPosts = onValue(postsRef, async (snapshot) => {
             const data = snapshot.val()
+            if(!data){
+                setPosts([])
+                return
+            }
             const dataNew = data.map((i) => {
                 return `post/${i}` 
             })
@@ -59,7 +61,7 @@ const ProfilePage = () => {
                     <h4>Likes: {post.likes}</h4>
                     {post.createdAt ? <p>{formatDistanceToNow(new Date(post.createdAt))}</p> : <p>Time not available</p>}
                     <button onClick={() => deleteContent(post.postId)}>Delete post</button>
-                </div>
+                </div> 
             ))}
         </div>
     )

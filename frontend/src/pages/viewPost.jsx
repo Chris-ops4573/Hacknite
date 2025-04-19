@@ -99,9 +99,9 @@ const LoadPost = () => {
                 {comments.map((comment) => (
                     <div key={comment.key} className="comment">
                         <h3>{comment.content}</h3>
-                        <h3>Likes: {comment.likes}</h3>
-                        <button onClick={() => IncreaseLikes(`comment/${postId}/${comment.key}/likes`, comment.likes)}>Like</button>
-                        <button onClick={() => DecreaseLikes(`comment/${postId}/${comment.key}/likes`, comment.likes)}>Dislike</button>
+                        <h3>Likes: {comment.likes} Dislikes: {comment.dislikes}</h3>
+                        <button onClick={() => IncreaseLikes(`comment/${postId}/${comment.key}`, comment.likes)}>Like</button>
+                        <button onClick={() => DecreaseLikes(`comment/${postId}/${comment.key}`, comment.dislikes)}>Dislike</button>
                         {comment.createdAt ? <p>{formatDistanceToNow(new Date(comment.createdAt))}</p> : <p>Time not available</p>}
                         {showReplies === comment.key ? <button onClick={() => {
                             setShowReplies("")
@@ -126,9 +126,9 @@ const LoadPost = () => {
                         {showReplies === comment.key ? replies.map((reply) => (
                             <div key={reply.key} className="comment-reply">
                                 <p>{reply.content}</p>
-                                <p>Likes: {reply.likes}</p>
-                                <button onClick={() => IncreaseLikes(`reply/${comment.key}/${reply.key}/likes`, reply.likes)}>Like</button>
-                                <button onClick={() => DecreaseLikes(`reply/${comment.key}/${reply.key}/likes`, reply.likes)}>Dislike</button>
+                                <p>Likes: {reply.likes} Dislikes: {reply.dislikes}</p>
+                                <button onClick={() => IncreaseLikes(`reply/${comment.key}/${reply.key}`, reply.likes)}>Like</button>
+                                <button onClick={() => DecreaseLikes(`reply/${comment.key}/${reply.key}`, reply.dislikes)}>Dislike</button>
                             </div>
                         )) : null}
                         <button onClick={() => navigate(`/report/comment/${comment.key}`)}>Report!</button>
