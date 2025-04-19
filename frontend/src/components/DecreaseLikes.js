@@ -24,7 +24,7 @@ export const DecreaseLikes = async(postId, currentDisikes) => {
     }
 
     const updates = {}
-    updates[`${postId}/dislikes`] = currentDisikes + 1 
+    updates[`${postId}/dislikes`] = currentDisikes >= 0 ? currentDisikes + 1 : 0
 
     const snapshot = await get(postDislikedByRef)
     const data = snapshot.val() || []

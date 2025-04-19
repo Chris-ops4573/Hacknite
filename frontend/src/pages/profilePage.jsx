@@ -58,7 +58,7 @@ const ProfilePage = () => {
                     {post.tags.map((tag) => (
                         <div className="tags-list-member">{tag}</div>
                     ))}
-                    <h4>Likes: {post.likes}</h4>
+                    <h4>Likes: {post.likes} Dislikes: {post.dislikes}</h4>
                     {post.createdAt ? <p>{formatDistanceToNow(new Date(post.createdAt))}</p> : <p>Time not available</p>}
                     <button onClick={() => deleteContent(post.postId)}>Delete post</button>
                 </div> 

@@ -12,7 +12,7 @@ export const IncreaseLikes = async(postId, currentLikes) => {
     const likedBy = snapshotUserLiked.val() || []  
     if(likedBy.includes(user.uid)){ 
         const unlikeUpdates = {}
-        unlikeUpdates[`${postId}/likes`] = currentLikes - 1
+        unlikeUpdates[`${postId}/likes`] = currentLikes >= 0 ? currentLikes - 1 : 0
         await update(ref(db), unlikeUpdates)
 
         const newLikedBy = likedBy.filter((id) => id !== user.uid)
@@ -24,7 +24,7 @@ export const IncreaseLikes = async(postId, currentLikes) => {
     }
 
     const updates = {}
-    updates[`${postId}/likes`] = currentLikes + 1 
+    updates[`${postId}/likes`] =  currentLikes + 1 
 
     const snapshot = await get(postLikedByRef)
     const data = snapshot.val() || []

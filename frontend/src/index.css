@@ -14,7 +14,7 @@ code {
 }
 
 header .container {
-  max-width: 190px;
+  max-width: 250px;
   margin: 0 0 0;
   padding: 10px 20px;
   display: flex;
@@ -37,8 +37,12 @@ header .container {
   align-items: center;
   height: 50vh;
   width: 45vw;
-  border: 20px solid #f1f1f1;
-  background-color: black;
+  border: 10px solid #070a3a;
+  background-color: rgb(40, 40, 40);
+}
+
+input::placeholder{
+  color: black;
 }
 
 .email-label{
@@ -50,6 +54,8 @@ header .container {
   padding: 3px;
   font-size: 15px;
   border-radius: 10px;
+  background-color: rgb(103, 102, 102);
+  border: black;
 }
 
 .email-field{
@@ -67,6 +73,8 @@ header .container {
   padding: 3px;
   font-size: 15px;
   border-radius: 10px;
+  background-color: rgb(103, 102, 102);
+  border: black;
 }
 
 .password-field{
@@ -96,6 +104,8 @@ header .container {
   padding: 3px;
   font-size: 15px;
   border-radius: 10px;
+  background-color: rgb(103, 102, 102);
+  border: black;
 }
 
 .error-message{
@@ -103,39 +113,171 @@ header .container {
 }
 
 .action-button{
-  border: 5px solid #151a59;
+  border: 5px solid #070a3a;
   background-color: rgb(103, 102, 102);
   border-radius: 10px;
 }
 
 .action-button:hover{
-  border: 5px solid #151a59;
+  border: 5px solid #070a3a;
   background-color: rgb(54, 53, 53);
   border-radius: 10px;
 }
 
+.action-button:active{
+  border: 5px solid #070a3a;
+  background-color: #070a3a;
+  border-radius: 10px;
+}
+
 .different-action-button{
-  border: 5px solid #151a59;
+  border: 5px solid #070a3a;
   background-color: rgb(103, 102, 102); 
   border-radius: 10px;
 }
 
 .different-action-button:hover{
-  border: 5px solid #151a59;
+  border: 5px solid #070a3a;
   background-color: rgb(54, 53, 53);
   border-radius: 10px;
 }
 
+.different-action-button:active{
+  border: 5px solid #070a3a;
+  background-color: #070a3a;
+  border-radius: 10px;
+}
+
+.main-header{
+  background-color: rgb(40, 40, 40);
+}
+
+.home-navbar{
+  color: #88868f;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.home-navbar:hover{
+  color: #66656b;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.home-link{
+  text-decoration: none;
+}
+
 .post-navbar{
   margin-left: 40px;
+  color: #88868f;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.post-navbar:hover{
+  margin-left: 40px;
+  color: #66656b;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.post-link{
+  text-decoration: none;
 }
 
 .profile-navbar{
   margin-left: 40px;
+  color: #88868f;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.profile-navbar:hover{
+  margin-left: 40px;
+  color: #66656b;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.profile-link{
+  text-decoration: none;
+}
+
+.post-form{
+  max-width: 1000px;
+  height: 100vh;
+
+}
+
+.post-form-container{
+  height: 100%;
+  margin: 0; 
+  display: flex;
+  flex-direction: column;
+}
+
+.post-forum-heading{
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.content-label{
+  display: inline;
+  vertical-align: top;
+}
+
+.content-input{
+  background-color: #333333;
+  border-radius: 0px;
+  color: rgb(148, 145, 138);
+}
+
+.content-input::placeholder{
+  color: rgb(148, 145, 138);
+}
+
+.post-button{
+  vertical-align: top;
+  width: 60px;
+  height: 23px;
+  border-radius: 8px;
+  color: rgb(148, 145, 138);
+  background-color:rgb(3, 11, 58);
+}
+
+.post-error{
+  color: #551313;
 }
 
 .tags-list-member{
   display: inline;
+}
+
+.adding-tags{
+  background-color:#66656b;
+  border: 3px solid rgb(3, 11, 58);
+  border-radius: 8px;
+  margin-left: 3px;
+}
+
+.adding-tags:hover{
+  background-color: #838386;
+}
+
+.adding-tags:active{
+  background-color: rgb(3, 11, 58);
+}
+
+.adding-tags-active{
+  background-color: #66656b;
+  border: 4px solid rgb(40, 40, 40);
 }
 
 
