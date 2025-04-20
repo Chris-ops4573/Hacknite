@@ -25,7 +25,6 @@ const LoadPost = () => {
     const [comments, setComments] = useState([])
     const [postContent, setPostContent] = useState(null)
     const db = getDatabase()
-    const replyRef = ref(db, 'reply/' + showReplies)
     const commentsRef = ref(db, 'comment/' + postId)
     const postRef = ref(db, 'post/' + postId)
 
@@ -52,6 +51,7 @@ const LoadPost = () => {
     }, [])
 
     useEffect(() => {
+        const replyRef = ref(db, 'reply/' + showReplies)
         const stopShowingReplies = onValue(replyRef, (snapshot) => {
             const data = snapshot.val() 
             if(data){
@@ -60,7 +60,7 @@ const LoadPost = () => {
                     ...value
                 }))
                 formattedReplies.sort((a, b) => b.createdAt - a.createdAt)
-                setReplies(formattedReplies)
+                setReplies(formattedReplies ? formattedReplies : null)
             }
         })
         return() => stopShowingReplies()
@@ -72,8 +72,8 @@ const LoadPost = () => {
                 {postContent ? (
                     <>
                         <h1 className="post-content">{postContent.content}</h1>
-                        <button className="like-button" onClick={() => IncreaseLikes(`post/${postContent.postId}/likes`, postContent.likes)}>Like: {postContent.likes}</button>
-                        <button className="dislike-button" onClick={() => DecreaseLikes(`post/${postContent.postId}/likes`, postContent.likes)}>Dislike: {postContent.dislikes}</button>
+                        <button className="like-button" onClick={() => IncreaseLikes(`post/${postContent.postId}`, postContent.likes)}>Like: {postContent.likes}</button>
+                        <button className="dislike-button" onClick={() => DecreaseLikes(`post/${postContent.postId}`, postContent.disikes)}>Dislike: {postContent.dislikes}</button>
                         <button className="report-button" onClick={() => navigate(`/report/post/${postContent.postId}`)}>Report!</button>
                     </>
                 ) : <p>Loading posts</p>}   
@@ -126,7 +126,7 @@ const LoadPost = () => {
                             <div className="all-replies">
                                 {showReplies === comment.key ? replies.map((reply) => (
                                     <div key={reply.key} className="comment-reply">
-                                        <h4>{reply.content}</h4>
+                                        {reply.content ? <h4>{reply.content}</h4> : <h4>Loading</h4>}
                                         <button className="like-button" onClick={() => IncreaseLikes(`reply/${comment.key}/${reply.key}`, reply.likes)}>Like: {reply.likes}</button>
                                         <button className="dislike-button" onClick={() => DecreaseLikes(`reply/${comment.key}/${reply.key}`, reply.dislikes)}>Dislike: {reply.dislikes }</button>
                                         {reply.createdAt ? <p>{formatDistanceToNow(new Date(reply.createdAt))} ago</p> : <p>Time not available</p>}

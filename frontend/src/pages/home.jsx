@@ -93,7 +93,7 @@ const Home = () => {
                         <button className="like-button" onClick={() => IncreaseLikes(`post/${post.key}`, post.likes)}>Like: {post.likes}</button>
                         <button className="dislike-button" onClick={() => DecreaseLikes(`post/${post.key}`, post.dislikes)}>Dislike: {post.dislikes}</button>
                         {post.createdAt ? <p>{formatDistanceToNow(new Date(post.createdAt))} ago</p> : <p>Time not available</p>}
-                        <button className="show-comments-button" onClick={() => setShowComments(post.key)}>See comments</button>
+                        <button className="show-comments-button" onClick={() => setShowComments(post.key)}>View post</button>
                         {showComments === post.key ? navigate(`/home/${post.key}`) : null}
                     </div>
                 ))}

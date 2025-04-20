@@ -6,9 +6,8 @@ export const IncreaseLikes = async(postId, currentLikes) => {
     const auth = getAuth()
     const user = auth.currentUser
     const postLikedByRef = ref(db, `${postId}/likedBy`)
-    const likedByRef = ref(db, `${postId}/likedBy`)
 
-    const snapshotUserLiked = await get(likedByRef)
+    const snapshotUserLiked = await get(postLikedByRef)
     const likedBy = snapshotUserLiked.val() || []  
     if(likedBy.includes(user.uid)){ 
         const unlikeUpdates = {}

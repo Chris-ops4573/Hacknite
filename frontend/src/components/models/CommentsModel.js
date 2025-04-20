@@ -13,7 +13,9 @@ export const WriteAndUpdateComment = async (postId, content, uid) => {
         postId: postId,
         commentId: commentId,
         createdAt: serverTimestamp(),
-        userUid: uid
+        userUid: uid,
+        likedBy: [],
+        dislikedBy: []
     })
 
     const snapshot = await get(commentsRef)

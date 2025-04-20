@@ -13,7 +13,9 @@ export const ReplyToComment = async (commentId, content, uid) => {
         commentId: commentId, 
         replyId: replyId, 
         createdAt: serverTimestamp(),
-        userUid: uid
+        userUid: uid,
+        likedBy: [],
+        dislikedBy: []
     })
 
     const snapshot = await get(repliesRef)
