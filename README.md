@@ -1,6 +1,6 @@
 ## IIITBuzz
 An anonymous forum exclusively for IIITB students. A place where IIITB students can freely discuss ideas, share experiences, and connect over a wide range of topics—academics, campus life, tech, or just random banter—all while staying anonymous.
-## 🛠️ Tech Stack
+## Tech Stack
 ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=nodedotjs&logoColor=white)
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black)
