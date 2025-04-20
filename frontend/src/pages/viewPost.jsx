@@ -77,7 +77,7 @@ const LoadPost = () => {
                         <h1 className="post-content">{postContent.content}</h1>
                         <button className="like-button" onClick={() => IncreaseLikes(`post/${postContent.postId}`, postContent.likes)}>Like: {postContent.likes}</button>
                         <button className="dislike-button" onClick={() => DecreaseLikes(`post/${postContent.postId}`, postContent.disikes)}>Dislike: {postContent.dislikes}</button>
-                        <button className="report-button" onClick={() => navigate(`/report/post/${postContent.postId}`)}>Report!</button>
+                        <button className="report-button" onClick={() => navigate(`/report/post/${postContent.postId}`)}>Report</button>
                     </>
                 ) : <p>Loading posts</p>}   
                 {postContent ? <p>{formatDistanceToNow(new Date(postContent.createdAt))} ago</p> : <p>Time not available</p>}
@@ -105,7 +105,7 @@ const LoadPost = () => {
                             <button className="like-button" onClick={() => IncreaseLikes(`comment/${postId}/${comment.key}`, comment.likes)}>Like: {comment.likes}</button>
                             <button className="dislike-button" onClick={() => DecreaseLikes(`comment/${postId}/${comment.key}`, comment.dislikes)}>Dislike: {comment.dislikes}</button>
                             {comment.createdAt ? <p>{formatDistanceToNow(new Date(comment.createdAt))} ago</p> : <p>Time not available</p>}
-                            <button className="report-button" onClick={() => navigate(`/report/comment/${comment.key}`)}>Report!</button>
+                            <button className="report-button" onClick={() => navigate(`/report/comment/${comment.key}`)}>Report</button>
                             {showReplies === comment.key ? <button className="hide-replies-button" onClick={() => {
                                 setShowReplies("")
                                 setReply("")
@@ -133,7 +133,7 @@ const LoadPost = () => {
                                         <button className="like-button" onClick={() => IncreaseLikes(`reply/${comment.key}/${reply.key}`, reply.likes)}>Like: {reply.likes}</button>
                                         <button className="dislike-button" onClick={() => DecreaseLikes(`reply/${comment.key}/${reply.key}`, reply.dislikes)}>Dislike: {reply.dislikes }</button>
                                         {reply.createdAt ? <p>{formatDistanceToNow(new Date(reply.createdAt))} ago</p> : <p>Time not available</p>}
-                                        <button className="report-button" onClick={() => navigate(`/report/comment/${comment.key}`)}>Report!</button>
+                                        <button className="report-button" onClick={() => navigate(`/report/comment/${comment.key}`)}>Report</button>
                                     </div>
                                 )) : null}
                             </div>

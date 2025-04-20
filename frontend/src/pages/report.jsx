@@ -16,7 +16,7 @@ const ReportUser = () => {
 
     return(
         <div className="report-container">
-            <h2 className="report-heading">Thank you for bringing this to our attention please make and submit your report here</h2>
+            <h2 className="report-heading">Thank you for bringing this to our attention</h2>
             <textarea className="content-input" rows="5" cols="100" onChange={(e) => setReport(e.target.value)} value={report} required placeholder="Make an anonymous report" />
             <button className="report-submit-button" onClick={() => {
                 if(report){

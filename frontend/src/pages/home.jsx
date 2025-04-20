@@ -59,7 +59,7 @@ const Home = () => {
     
     return(
         <div className="home-container">
-            <h1 className="home-heading">Home page</h1>
+            <h1 className="home-heading">IIITBuzz</h1>
             <h2>Choose a tag to filter by:</h2>
             <button className={`adding-tags${selectedTag === "General "? "-active" : ""}`} onClick={() => setSelectedTag("General ")}>General</button>
             <button className={`adding-tags${selectedTag === "Rant "? "-active" : ""}`} onClick={() => setSelectedTag("Rant ")}>Rant</button>

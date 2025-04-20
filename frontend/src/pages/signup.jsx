@@ -22,6 +22,7 @@ const SignupPage = () => {
 
     return(
         <div className="wrapper">
+            <h1>fdfsad</h1>
             <div className="login-page">
                 <p className="anonymity-warning">Note: Refrain from using your real name in username to maintain anonymity</p>
                 <div className="username-field">
