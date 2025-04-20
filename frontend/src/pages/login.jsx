@@ -22,6 +22,7 @@ const SigninPage = () => {
     return(
         <div className="wrapper">
             <div className="login-page">
+                <h2 className="main-title">Welcome to IIITBuzz</h2>
                 <div className="email-field">
                     <label className="email-label">Email: &nbsp;</label>
                     <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" required placeholder="Enter your email" className="email-input"/>

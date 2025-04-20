@@ -23,6 +23,7 @@ const SignupPage = () => {
     return(
         <div className="wrapper">
             <div className="login-page">
+                <h2 className="main-title">Welcome to IIITBuzz</h2>
                 <p className="anonymity-warning">Note: Refrain from using your real name in username to maintain anonymity</p>
                 <div className="username-field">
                     <label className="username-label">Username: &nbsp;</label>
