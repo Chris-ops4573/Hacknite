@@ -12,8 +12,18 @@ IIITB students often seek a platform to share thoughts, seek help, or engage in 
 - Tag-based Filters – Browse or filter posts by categories like #rant, #academics, #general, and more.
 - Smart Sorting – View posts by Most Liked, Latest, etc.
 - IIITB-Only Access – Sign-up requires a valid IIITB college email, keeping the community authentic and exclusive.
-## Installation and deployment
-xyz
+## Links
+- [URL where the app is hosted](https://hacknite-anonymous-forum.web.app/)
+- [YouTube video link for demo](https://youtu.be/PDva0w8uuuI)
+## Installation: 
+- Install node package manager.
+- Open new folder in VS Code.
+- Innitialize a repo in vs bu running git init.
+- Clone the repo by running git clone on [link](https://github.com/Chris-ops4573/Hacknite)
+- cd to hacknite again and then cd to frontend.
+- Run npm install.
+- Type npm start and the app will start on local host 3000.
+  
 ## 🛠️Further Improvements
 - Multi-College Support : Expand IIITBuzz to support other colleges while keeping discussions scoped to each individual institution. Users will only see content relevant to their own campus.
 - Media Support : Allow users to upload and share images, videos, and memes—adding more expression and engagement to posts and comments.
