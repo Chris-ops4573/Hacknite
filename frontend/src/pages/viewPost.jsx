@@ -15,6 +15,7 @@ const LoadPost = () => {
     const auth = getAuth()
     const user = auth.currentUser
     const navigate = useNavigate()
+    
     const {postId} = useParams();
     const [replyError, setReplyError] = useState("")
     const [showReplies, setShowReplies] = useState("")
@@ -61,6 +62,8 @@ const LoadPost = () => {
                 }))
                 formattedReplies.sort((a, b) => b.createdAt - a.createdAt)
                 setReplies(formattedReplies ? formattedReplies : null)
+            } else{
+                setReplies([])
             }
         })
         return() => stopShowingReplies()

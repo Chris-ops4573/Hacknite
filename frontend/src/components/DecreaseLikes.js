@@ -5,32 +5,43 @@ export const DecreaseLikes = async(postId, currentDisikes) => {
     const db = getDatabase()
     const auth = getAuth()
     const user = auth.currentUser
-    const postDislikedByRef = ref(db, `${postId}/dislikedBy`)
     const dislikedByRef = ref(db, `${postId}/dislikedBy`)
+    const likedByRef = ref(db, `${postId}/likedBy`)
 
     const snapshotUserDisliked = await get(dislikedByRef)
+    const snapshotUserLiked = await get(likedByRef)
     const dislikedBy = snapshotUserDisliked.val() || []
+    const likedBy = snapshotUserLiked.val() || []
     if(dislikedBy.includes(user.uid)){
-        const unDislikeUpdates = {}
-        unDislikeUpdates[`${postId}/dislikes`] = currentDisikes - 1
-        await update(ref(db), unDislikeUpdates)
-
         const newDislikedBy = dislikedBy.filter((id) => id !== user.uid)
         const newUpdateUserDisikedPosts = {}
         newUpdateUserDisikedPosts[`${postId}/dislikedBy`] = newDislikedBy
         await update(ref(db), newUpdateUserDisikedPosts)
 
+        const unDislikeUpdates = {}
+        unDislikeUpdates[`${postId}/dislikes`] = newDislikedBy.length
+        await update(ref(db), unDislikeUpdates)
+
         return 
     }
 
-    const updates = {}
-    updates[`${postId}/dislikes`] = currentDisikes >= 0 ? currentDisikes + 1 : 0
+    if(likedBy.includes(user.uid)){
+        const newLikedBy = likedBy.filter((id) => id !== user.uid) 
+        const unlikePostUpdate = {}
+        unlikePostUpdate[`${postId}/likedBy`] = newLikedBy
+        await update(ref(db), unlikePostUpdate)
 
-    const snapshot = await get(postDislikedByRef)
-    const data = snapshot.val() || []
+        const unlikeCount = {}
+        unlikeCount[`${postId}/likes`] = newLikedBy.length
+        await update(ref(db), unlikeCount)
+    }
+
+    const data = snapshotUserDisliked.val() || []
     const updateUserDislikedPosts = {}
     updateUserDislikedPosts[`${postId}/dislikedBy`] = [...data, user.uid]
 
+    const updates = {}
+    updates[`${postId}/dislikes`] = data.length + 1
     await update(ref(db), updateUserDislikedPosts)
     await update(ref(db), updates)
 }

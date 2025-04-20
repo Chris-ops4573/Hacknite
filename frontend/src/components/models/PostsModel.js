@@ -14,13 +14,13 @@ export const WriteAndUpdatePost = async (content ,tags, uid) => {
         tags: tags.length > 0 ? tags : ["General "],
         createdAt: serverTimestamp(),
         userUid: uid,
-        likedBy: [],
-        dislikedBy: []
+        dislikedBy: [],
+        likedBy: []
     })
 
     const snapshot = await get(postsRef)
     const postArray = snapshot.val() || []
     const updates = {}
-    updates[`user/${uid}/posts`] = [...postArray, postId]
+    updates[`user/${uid}/posts`] = [...postArray, postId]   
     await update(ref(db), updates)
 }

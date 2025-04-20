@@ -8,6 +8,8 @@ export const getOrMakeUser = (user, username) => {
         username: username,
         userId: user.uid,
         createdAt: serverTimestamp(),
-        posts: []
+        posts: [],
+        postsLiked: [],
+        postsDisliked: []
     })
 }
